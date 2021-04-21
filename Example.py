@@ -64,7 +64,7 @@ data = [
         "type": "sendDataWithInput",
         "buttonText": "Readed 1",
         "placeholder": "What readed",
-        "firstPart":"KubaJe",
+        "firstPart":"<yournamehere>Is",
         "size": 10,
         "id": "data0"
     }
