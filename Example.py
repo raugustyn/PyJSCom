@@ -1,5 +1,8 @@
 #  -*- coding: utf-8 -*-
 __author__ = "kubik.augustyn@post.cz"
+"""
+This example shows how python HTTP server receives data and fires callback function in a JavaScript client.
+"""
 
 from COM.COM import Communication
 import time
@@ -73,17 +76,19 @@ data = [
 def onReceive(text):
     print(text)
 
-com = Communication(data=data, port=12345)
-com.onReceive = onReceive
-com.run()
-while True:
-    time.sleep(1)
-    if data[3]["HTML"][0][1]["progress"] == 100:
-        break
-    data[3]["HTML"][0][1]["progress"] = data[3]["HTML"][0][1]["progress"] + 10
+    
+if __name__ == '__main__':
+    com = Communication(data=data, port=12345)
+    com.onReceive = onReceive
+    com.run()
+    while True:
+        time.sleep(1)
+        if data[3]["HTML"][0][1]["progress"] == 100:
+            break
+        data[3]["HTML"][0][1]["progress"] = data[3]["HTML"][0][1]["progress"] + 10
+        com.data = data
+        com.reloadConsole()
+    print("Ended.")
+    data[0]["text"] = "Finished"
     com.data = data
-    com.reloadConsole()
-print("Ended.")
-data[0]["text"] = "Finished"
-com.data = data
 com.reloadConsole()
